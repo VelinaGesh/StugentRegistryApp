@@ -1,0 +1,17 @@
+{
+  "name": "MVC-app-integration-tests-example",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "node-fetch": "^2.6.7",
+    "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "mocha": "^10.7.3"
+  },
+  "scripts": {
+    "test": "mocha tests/*.js",
+    "start": "node index.js"
+  }
+}
