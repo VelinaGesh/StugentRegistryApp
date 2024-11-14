@@ -25,7 +25,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # Step 4: Pull remote changes (if needed)
     - name: Pull remote changes
       run: git pull origin main --rebase
 
