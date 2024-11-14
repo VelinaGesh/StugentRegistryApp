@@ -1,39 +1,28 @@
-name: AddStudentsWorkfall CI
+name: AddStudentsWorkflow CI
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+  workflow_dispatch:  # This allows manual runs from the GitHub UI
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.x]
-      
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       run: npm install
-
-    # Step 4: Pull remote changes (if needed)
-    - name: Pull remote changes
-      run: git pull origin main --rebase
-
-
     - name: Run tests
       run: npm test
-
-    
-    - name: Push changes to remote
-      run: git push origin main
