@@ -1,3 +1,6 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
 name: Node.js CI
 
 on:
@@ -27,15 +30,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # Step to handle unstaged changes (if any)
-    - name: Commit unstaged changes (if any)
+    - name: Ensure mocha is executable
       run: |
-        git diff --exit-code || git commit -am "Auto-commit changes before pulling"
-    
-    # Pull the latest changes from the remote main branch
-    - name: Pull remote changes
-      run: git pull origin main --rebase
+        chmod +x node_modules/.bin/mocha
 
     - name: Run tests
       run: npm test
-
