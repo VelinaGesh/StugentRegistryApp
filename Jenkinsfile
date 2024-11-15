@@ -4,6 +4,11 @@ pipeline {
         nodejs 'Node_16'
     }
     stages {
+        stage('Install Plugins') {
+            steps {
+                sh 'jenkins-plugin-cli --plugins git:5.0.2'
+            }
+        }
         stage("Checkout the code"){
             steps{
                 git url: 'https://github.com/VelinaGesh/StugentRegistryApp'
